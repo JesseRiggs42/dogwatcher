@@ -68,12 +68,13 @@ describe("Team builds and its getters return valid values.", () => {
         expect(null).toEqual('this should never happen.');
       });
 
-      it('throws exception when validating invalid teamName.', () => {
-        let team = new Team("",null,null);
+      it('throws exception when validating invalid element of scores.', () => {
+        let button = 'button';
+        let team = new Team(teamName,teamNumber,[1,2,3,button]);
         try{
           team.isValid();
         } catch(error) {
-          expect(error.message).toEqual('teamName must be declared and non-empty.');
+          expect(error.message).toEqual(`score "${button}" for team ${teamName} must be an integer.`);
           return;
         }
         expect(null).toEqual('this should never happen.');
