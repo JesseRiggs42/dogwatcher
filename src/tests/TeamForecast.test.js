@@ -1,65 +1,169 @@
 import TeamForecast from "../models/TeamForecast";
 
-describe("TeamForecast builds and its getters return expected values.", () => {
+function runStats (teamForecast) {
+    teamForecast.getScoreTotal();
+    teamForecast.getGamesPlayed();
+    teamForecast.getScoreStd();
+}
+
+describe("TeamForecast behaves as expected", () => {
 
     const teamName = "teamName";
     const teamNumber = 1234;
 
-    it('constructs and returns expected values when score entries exist.', () => {
-        let testScores = [1,2,3,4];
-        let teamForecast = new TeamForecast(
-            teamName,
-            teamNumber,
-            testScores
-        );
+    describe('with vaid parameters and numeric teamScores', () => {
+        let teamScores = [1,3,9,27];
+        let teamForecast;
 
-        expect(teamForecast.isValidTeam());
-        expect(teamForecast.getTeamName()).toEqual(teamName);
-        expect(teamForecast.getTeamNumber()).toEqual(teamNumber);
-        expect(teamForecast.getScores()).toEqual(testScores);
-        expect(teamForecast.getScoreAverage()).toEqual(2.5);
-        expect(teamForecast.getGamesPlayed()).toEqual(4);
-      });
+        test('constructs wihtout error.', () => {
+            teamForecast = new TeamForecast(
+                teamName,
+                teamNumber,
+                teamScores
+            );
+        });
+        test('isValid() returns without error.', () => {
+          expect(teamForecast.isValidTeam());});
 
-      test('setExtraScores takes empty array and behaves normally', () => {
-        let testScores = [1,2,3,4];
+        test('getTeamName() returns expected teamName.', () => {
+            expect(teamForecast.getTeamName())
+            .toEqual(teamName);});
+
+        test('getTeamNumber() returns expected teamNumber.', () => {
+            expect(teamForecast.getTeamNumber())
+            .toEqual(teamNumber);});
+
+        test('getScores() returs expected scores.', () => {
+            expect(teamForecast.getScores())
+            .toEqual(teamScores);});
+
+        test('getScoreTotal() returns expected total.', () => {
+            expect(teamForecast.getScoreTotal())
+            .toEqual(40);});
+
+        test('getScoreAverage() returns expected average.', () => {
+            expect(teamForecast.getScoreAverage())
+            .toEqual(10);});
+
+        test('getGamesPlayed() returns expected value.', () => {
+            expect(teamForecast.getGamesPlayed())
+            .toEqual(4);});
+
+        test('getScoreStd() returns expected standard deviation.', () => {
+            expect(teamForecast.getScoreStd())
+            .toEqual(10.246950765959598);});
+    });
+
+    describe('setExtraScores() succeeds with empty array and does not affect calculated statistics', () => {
+        let teamScores = [1,2,3,4];
         let extraScores = [];
         let teamForecast = new TeamForecast(
             teamName,
             teamNumber,
-            testScores
+            teamScores
         );
-        teamForecast.setExtraScores(extraScores);
+        test('setExtraScores() succeeds with empty array', () => {
+            teamForecast.setExtraScores(extraScores);});
 
-        expect(teamForecast.getScores()).toEqual(testScores);
-        expect(teamForecast.getScoreTotal()).toEqual(10);
-        expect(teamForecast.getGamesPlayed()).toEqual(4);
-        expect(teamForecast.getScoreAverage()).toEqual(2.5);
-      });
+        test('getScores() returs expected scores.', () => {
+          expect(teamForecast.getScores())
+          .toEqual(teamScores);});
 
-      test('setExtraScores takes numeric array and behaves normally', () => {
-        let testScores = [1,2,3,4];
+        test('getScoreTotal() returns expected total.', () => {
+            expect(teamForecast.getScoreTotal())
+            .toEqual(10);});
+
+        test('getScoreAverage() returns expected average.', () => {
+            expect(teamForecast.getScoreAverage())
+            .toEqual(2.5);});
+
+        test('getGamesPlayed() returns expected value.', () => {
+            expect(teamForecast.getGamesPlayed())
+            .toEqual(4);});
+
+        test('getScoreStd() returns expected standard deviation.', () => {
+            expect(teamForecast.getScoreStd())
+            .toEqual(1.118033988749895);});
+    });
+
+    describe('setExtraScores() succeeds with numeric array and caculated stats adjust', () => {
+        let teamScores = [1,2,3,4];
         let extraScores = [5,6,7];
         let teamForecast = new TeamForecast(
             teamName,
             teamNumber,
-            testScores
+            teamScores
         );
+        test('setExtraScores() succeeds with populated array', () => {
+            teamForecast.setExtraScores(extraScores);});
+
+        test('getScores() returs expected scores.', () => {
+            expect(teamForecast.getScores())
+            .toEqual([...teamScores, ...extraScores]);});
+
+        test('getScoreTotal() returns expected total.', () => {
+            expect(teamForecast.getScoreTotal())
+            .toEqual(28);});
+
+        test('getScoreAverage() returns expected average.', () => {
+            expect(teamForecast.getScoreAverage())
+            .toEqual(4);});
+
+        test('getGamesPlayed() returns expected value.', () => {
+            expect(teamForecast.getGamesPlayed())
+            .toEqual(7);});
+
+        test('getScoreStd() returns expected standard deviation.', () => {
+            expect(teamForecast.getScoreStd())
+            .toEqual(2);});
+    });
+
+    describe('setExtraScores() called multiple times and caculated stats adjust', () => {
+
+        let teamScores = [1,2,3,4];
+        let extraScores = [5,6,7];
+        let teamForecast = new TeamForecast(
+            teamName,
+            teamNumber,
+            teamScores
+        );
+        teamForecast.setExtraScores([1]);
+        runStats(teamForecast);
+        teamForecast.setExtraScores([0,0,0,0,0,0,0]);
+        runStats(teamForecast);
+        teamForecast.setExtraScores([-1,-2,-3]);
+        runStats(teamForecast);
         teamForecast.setExtraScores(extraScores);
 
-        expect(teamForecast.getScores()).toEqual([...testScores, ...extraScores]);
-        expect(teamForecast.getScoreTotal()).toEqual(28);
-        expect(teamForecast.getGamesPlayed()).toEqual(7);
-        expect(teamForecast.getScoreAverage()).toEqual(4);
-      });
 
-      test('setExtraScores throws exception when passed non-array argument.', () => {
-        let testScores = [1,2,3,4];
+        test('getScores() returs expected scores.', () => {
+            expect(teamForecast.getScores())
+            .toEqual([...teamScores, ...extraScores]);});
+
+        test('getScoreTotal() returns expected total.', () => {
+            expect(teamForecast.getScoreTotal())
+            .toEqual(28);});
+
+        test('getScoreAverage() returns expected average.', () => {
+            expect(teamForecast.getScoreAverage())
+            .toEqual(4);});
+
+        test('getGamesPlayed() returns expected value.', () => {
+            expect(teamForecast.getGamesPlayed())
+            .toEqual(7);});
+
+        test('getScoreStd() returns expected standard deviation.', () => {
+            expect(teamForecast.getScoreStd())
+            .toEqual(2);});
+    });
+
+    test('setExtraScores() throws exception when passed non-array argument.', () => {
+        let teamScores = [1,2,3,4];
         let extraScores = 'squirrel';
         let teamForecast = new TeamForecast(
             teamName,
             teamNumber,
-            testScores
+            teamScores
         );
         try {
             teamForecast.setExtraScores(extraScores);
@@ -67,16 +171,16 @@ describe("TeamForecast builds and its getters return expected values.", () => {
             expect(error.message).toEqual(`Could not set extra scores for team "${teamName}". `
                 + `Numeric array "${extraScores}" must be array.`)
         }
-      });
+    });
 
-      test('setExtraScores throws exception when passed non-numeric array.', () => {
-        let testScores = [1,2,3,4];
+    test('setExtraScores() throws exception when passed non-numeric array.', () => {
+        let teamScores = [1,2,3,4];
         let rabbit = 'rabbit';
         let extraScores = [5,6,rabbit];
         let teamForecast = new TeamForecast(
             teamName,
             teamNumber,
-            testScores
+            teamScores
         );
         try {
             teamForecast.setExtraScores(extraScores);
@@ -84,51 +188,136 @@ describe("TeamForecast builds and its getters return expected values.", () => {
             expect(error.message).toEqual(`Could not set extra scores for team "${teamName}". `
                 + `Element of numeric array "${rabbit}" must be a number.`)
         }
-      });
+    });
 
-      test('addGamesToForecast takes zero values and behaves normally', () => {
-        let testScores = [1,2,3,4];
+    describe('addGamesToForecast succeeds with zero values and calculated stats are unneffected', () => {
+        let teamScores = [1,2,3,4];
         let teamForecast = new TeamForecast(
             teamName,
             teamNumber,
-            testScores
+            teamScores
+        );
+        test('addGamesToForecast() succeeds with populated array', () => {
+            teamForecast.addGamesToForecast(0, 0);});
+
+        test('getScores() returs expected scores.', () => {
+            expect(teamForecast.getScores())
+            .toEqual(teamScores);});
+
+        test('getScoreTotal() returns expected total.', () => {
+            expect(teamForecast.getScoreTotal())
+            .toEqual(10);});
+
+        test('getScoreAverage() returns expected average.', () => {
+            expect(teamForecast.getScoreAverage())
+            .toEqual(2.5);});
+
+        test('getGamesPlayed() returns expected value.', () => {
+            expect(teamForecast.getGamesPlayed())
+            .toEqual(4);});
+
+        test('getScoreStd() returns expected standard deviation.', () => {
+            expect(teamForecast.getScoreStd())
+            .toEqual(1.118033988749895);});
+    });
+
+    describe('addGamesToForecast succeeds with populated numeric array and calculated stats adjust', () => {
+        let teamScores = [0,1,2,3];
+        let teamForecast = new TeamForecast(
+            teamName,
+            teamNumber,
+            teamScores
+        );
+        test('addGamesToForecast() succeeds with populated array', () => {
+            teamForecast.addGamesToForecast(2, 0);});
+
+        test('getScores() returs expected scores.', () => {
+            expect(teamForecast.getScores())
+            .toEqual([...teamScores, 0, 0]);});
+
+        test('getScoreTotal() returns expected total.', () => {
+            expect(teamForecast.getScoreTotal())
+            .toEqual(6);});
+
+        test('getScoreAverage() returns expected average.', () => {
+            expect(teamForecast.getScoreAverage())
+            .toEqual(1);});
+
+        test('getGamesPlayed() returns expected value.', () => {
+            expect(teamForecast.getGamesPlayed())
+            .toEqual(6);});
+
+        test('getScoreStd() returns expected standard deviation.', () => {
+            expect(teamForecast.getScoreStd())
+            .toEqual(1.1547005383792515);});
+    });
+
+    describe('addGamesToForecast() succeeds with multiple negative scores and stats adjust', () => {
+        let teamScores = [];
+        let teamForecast = new TeamForecast(
+            teamName,
+            teamNumber,
+            teamScores
+        );
+        test('addGamesToForecast() succeeds with populated array', () => {
+            teamForecast.addGamesToForecast(5, -1);});
+
+        test('getScores() returs expected scores.', () => {
+            expect(teamForecast.getScores())
+            .toEqual([-1, -1, -1, -1, -1]);});
+
+        test('getScoreTotal() returns expected total.', () => {
+            expect(teamForecast.getScoreTotal())
+            .toEqual(-5);});
+
+        test('getScoreAverage() returns expected average.', () => {
+            expect(teamForecast.getScoreAverage())
+            .toEqual(-1);});
+
+        test('getGamesPlayed() returns expected value.', () => {
+            expect(teamForecast.getGamesPlayed())
+            .toEqual(5);});
+
+        test('getScoreStd() returns expected standard deviation.', () => {
+            expect(teamForecast.getScoreStd())
+            .toEqual(0);});
+    });
+
+    describe('addGamesToForecast() called multiple times and caculated stats adjust', () => {
+
+        let teamScores = [2,2,2,2];
+        let teamForecast = new TeamForecast(
+            teamName,
+            teamNumber,
+            teamScores
         );
         teamForecast.addGamesToForecast(0, 0);
+        runStats(teamForecast);
+        teamForecast.addGamesToForecast(5, 5);
+        runStats(teamForecast);
+        teamForecast.addGamesToForecast(6, -1);
+        runStats(teamForecast);
+        teamForecast.addGamesToForecast(2, 2);
 
-        expect(teamForecast.getScores()).toEqual(testScores);
-        expect(teamForecast.getScoreTotal()).toEqual(10);
-        expect(teamForecast.getGamesPlayed()).toEqual(4);
-        expect(teamForecast.getScoreAverage()).toEqual(2.5);
-      });
 
-      test('addGamesToForecast takes multiple zero scores and behaves normally', () => {
-        let testScores = [0,1,2,3];
-        let teamForecast = new TeamForecast(
-            teamName,
-            teamNumber,
-            testScores
-        );
-        teamForecast.addGamesToForecast(2, 0);
+        test('getScores() returs expected scores.', () => {
+            expect(teamForecast.getScores())
+            .toEqual([...teamScores, 2, 2]);});
 
-        expect(teamForecast.getScores()).toEqual([...testScores, 0, 0]);
-        expect(teamForecast.getScoreTotal()).toEqual(6);
-        expect(teamForecast.getGamesPlayed()).toEqual(6);
-        expect(teamForecast.getScoreAverage()).toEqual(1);
-      });
+        test('getScoreTotal() returns expected total.', () => {
+            expect(teamForecast.getScoreTotal())
+            .toEqual(12);});
 
-      test('addGamesToForecast takes multiple negative scores and behaves normally', () => {
-        let testScores = [];
-        let teamForecast = new TeamForecast(
-            teamName,
-            teamNumber,
-            testScores
-        );
-        teamForecast.addGamesToForecast(5, -1);
+        test('getScoreAverage() returns expected average.', () => {
+            expect(teamForecast.getScoreAverage())
+            .toEqual(2);});
 
-        expect(teamForecast.getScores()).toEqual([-1, -1, -1, -1, -1]);
-        expect(teamForecast.getScoreTotal()).toEqual(-5);
-        expect(teamForecast.getGamesPlayed()).toEqual(5);
-        expect(teamForecast.getScoreAverage()).toEqual(-1);
-      });
+        test('getGamesPlayed() returns expected value.', () => {
+            expect(teamForecast.getGamesPlayed())
+            .toEqual(6);});
 
+        test('getScoreStd() returns expected standard deviation.', () => {
+            expect(teamForecast.getScoreStd())
+            .toEqual(0);});
     });
+});

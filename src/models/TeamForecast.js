@@ -1,5 +1,5 @@
 import Team from './Team';
-import {validateNumericArray} from '../tools/ValidationTools'
+import { validateNumericArray } from '../tools/ValidationTools'
 
 export default class TeamForecast extends Team {
 
@@ -12,16 +12,8 @@ export default class TeamForecast extends Team {
         return [...this.scores, ...this.extraScores];
     }
 
-    getScoreTotal() {
-        return this.__total_scores([...this.scores, ...this.extraScores]);
-    }
-
-    getScoreAverage() {
-        return this.__average_scores([...this.scores, ...this.extraScores]);
-    }
-
     getGamesPlayed() {
-        return this.scores.length + this.extraScores.length;
+        return super.getGamesPlayed() + this.extraScores.length;
     }
 
     setExtraScores(extraScores) {
@@ -32,6 +24,7 @@ export default class TeamForecast extends Team {
             throw error;
         }
         this.extraScores = extraScores;
+        this.__clear_stats();
     }
 
     addGamesToForecast(gameCount, score) {
@@ -42,7 +35,14 @@ export default class TeamForecast extends Team {
         for(let i=0;i<gameCount;i++){
             extraScores.push(score);
         }
-        this.extraScores = extraScores;
+        this.setExtraScores(extraScores);
     }
 
+    __clear_stats() {
+        // Something has changed. We no longer know the stats. Clear and recalculate.
+        this.scoreTotal = null;
+        this.scoreAvg = null;
+        this.scoreStd = null;
+        this.gamesPlayed = null;
+    }
 }

@@ -1,10 +1,19 @@
 import {assert} from '../tools/ValidationTools'
+import {
+    calculateAverage,
+    calculateStandardDeviation,
+    sumArray
+} from '../tools/MathTools'
 
 export default class Team {
     constructor(teamName, teamNumber, scoresArray) {
         this.teamName = teamName;
         this.teamNumber = teamNumber;
         this.scores = scoresArray;
+        this.scoreTotal = null;
+        this.scoreAvg = null;
+        this.scoreStd = null;
+        this.gamesPlayed = null;
     }
 
     clone() {
@@ -24,15 +33,19 @@ export default class Team {
     }
 
     getScoreTotal() {
-        return this.__total_scores(this.scores);
+        return this.scoreTotal ?? (this.scoreTotal = sumArray(this.getScores()));
     }
 
     getScoreAverage() {
-        return this.__average_scores(this.scores);
+        return this.scoreAvg ?? (this.scoreAvg = calculateAverage(this.getScores()));
+    }
+
+    getScoreStd() {
+        return this.scoreStd ?? (this.scoreStd = calculateStandardDeviation(this.getScores()));
     }
 
     getGamesPlayed() {
-        return this.scores.length;
+        return this.gamesPlayed ?? (this.gamesPlayed = this.scores.length);
     }
 
     isValidTeam() {
@@ -42,24 +55,6 @@ export default class Team {
         this.scores.forEach(score => {
             assert(!isNaN(Number.parseInt(score)), `score "${score}" for team ${this.teamName} must be an integer.`);
         })
-    }
-
-    __average_scores(scores) {
-        let total = 0;
-        scores.forEach(score => {
-            total += score;
-        });
-
-        return total == 0? total : total / scores.length;
-    }
-
-    __total_scores(scores) {
-        let total = 0;
-        scores.forEach(score => {
-            total += score;
-        });
-
-        return total;
     }
 
 }
