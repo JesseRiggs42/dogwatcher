@@ -63,14 +63,13 @@ export default class GnlLeaderBoard {
     }
 
     getScoresTotal() {
-
         if(this.scoresTotal !== null) {
             return this.scoresTotal;
         }
 
         this.scoresTotal = 0;
         Object.keys(this.teamsMap).forEach(name => {
-            this.scoresTotal += this.getTeamByName(name).getScoreTotal();
+            this.scoresTotal += this.teamsMap[name].getScoreTotal();
         });
 
         return this.scoresTotal;
@@ -88,7 +87,7 @@ export default class GnlLeaderBoard {
 
         this.gamesPlayed = 0;
         Object.keys(this.teamsMap).forEach(name => {
-            this.gamesPlayed += this.getTeamByName(name).getGamesPlayed();
+            this.gamesPlayed += this.teamsMap[name].getGamesPlayed();
         });
         
         return this.gamesPlayed;

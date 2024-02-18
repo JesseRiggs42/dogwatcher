@@ -5,10 +5,9 @@ import {
     generateValidDates
 } from "./stubs/GnlBoardStubs";
 import GnlLeaderBoard from "../models/GnlLeaderBoard";
-import TableMetadata from "../models/TableMetadata";
 import Team from "../models/Team";
 
-describe("GnlLeaderBoard builds and getters behave as expected.", () => {
+describe("GnlLeaderBoard builds and behaves as expected.", () => {
 
     const teamName = "teamName";
     const teamNumber = 1234;

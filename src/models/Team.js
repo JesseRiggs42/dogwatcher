@@ -14,6 +14,7 @@ export default class Team {
         this.scoreAvg = null;
         this.scoreStd = null;
         this.gamesPlayed = null;
+        this.uid = Math.round(1000000000*Math.random());
     }
 
     clone() {
