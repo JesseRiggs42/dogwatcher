@@ -7,6 +7,16 @@ export default class TableMetadata{
         this.dates = dates;
     }
 
+    clone() {
+
+        let dates = [];
+        this.dates.forEach(date => {
+            dates.push(date);
+        });
+
+        return new TableMetadata(this.title, this.dateline, dates);
+    }
+
     getTitle() {
         return this.title;
     }
@@ -14,7 +24,7 @@ export default class TableMetadata{
     getDateline() {
         return this.dateline;
     }
-    
+
     getDates() {
         return [...this.dates];
     }

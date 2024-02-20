@@ -5,7 +5,20 @@ export default class BoardForecast extends GnlLeaderBoard {
 
     constructor(metadata, teamsList) {
         super(metadata, teamsList);
-        this.maxExtraGames = 0;
+        this.maxExtraGames = 1;
+    }
+
+    getExtraGameOptions() {
+        let options = [];
+        for(let i = 0; i <= this.maxExtraGames; i++) {
+            options.push(i);
+        }
+
+        return options;
+    }
+
+    getTitle() {
+        return super.getTitle() + ` ${this.maxExtraGames} Game Forecast`
     }
 
     addGamesByName(gameCount, teamName) {
@@ -34,12 +47,22 @@ export default class BoardForecast extends GnlLeaderBoard {
         this.__clear_stats();
     }
 
+    cloneMetadata() {
+        // don't inherit this from super. We don't want to do this here.
+        throw new Error(`cloneMetadata cannot be implemented from children.`);
+    }
+
+    cloneTeamsList() {
+        // don't inherit this from super. We don't want to do this here.
+        throw new Error(`cloneTeamsList cannot be implemented from children.`);
+    }
+
     __clear_stats() {
         // Something has changed. We no longer know the stats. Clear and recalculate.
         this.gamesAverage = null;
+        this.gamesPlayed = null;
         this.gamesStandardDeviation = null;
         this.scoresTotal = null;
-        this.gamesPlayed = null;
     }
 
     __create_team(teamName, teamNumber, scores) {

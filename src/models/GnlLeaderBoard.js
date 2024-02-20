@@ -1,5 +1,7 @@
 import { assert } from '../tools/ValidationTools';
-import { calculateStandardDeviation, calculateAverage } from '../tools/MathTools'
+import {
+    calculateStandardDeviation,
+    calculateAverage } from '../tools/MathTools'
 import Team from './Team';
 
 export default class GnlLeaderBoard {
@@ -23,7 +25,7 @@ export default class GnlLeaderBoard {
 
     getTeamByName(name) {
         if(!this.teamsMap[name]) {
-            console.error(`Error: could not find team by name: ${name}`)
+            console.error(`Error: could not find team by name: ${name}`);
             return null;
         }
         return this.teamsMap[name].clone();
@@ -97,31 +99,25 @@ export default class GnlLeaderBoard {
         return this.metadata.getTitle();
     }
 
-    create1GameForecast() {
-        // TODO: Implement this.
-        throw new Error("create1GameForecast not yet implemented");
+    cloneMetadata() {
+        return this.metadata.clone();
     }
 
-    create6GameForecast() {
-        // TODO: Implement this.
-        throw new Error("create6GameForecast not yet implemented");
+    cloneTeamsList() {
+
+        let teamsList = [];
+        Object.keys(this.teamsMap).forEach(teamName => {
+            teamsList.push(this.teamsMap[teamName].clone());
+        });
+
+        return teamsList;
     }
 
-    __add_metadata(metadata) {
-        assert(metadata != null, 'Metadata cannot be null.');
-        assert(typeof(metadata.isValidMetadata)==='function', 'Metadata must impliment "isValidMetadata".');
-        try {
-            metadata.isValidMetadata();
-        } catch(error) {
-            error.message = 'Could not add metadata. Invalid metadata: ' + error.message;
-        }
-    }
-
-    __validate_teamsList(teamsList) {
-        assert(teamsList != null, 'Teams map cannot be null.');
-        assert(Array.isArray(teamsList), 'Teams map must be array.');
+    static __validate_teamsList(teamsList) {
+        assert(teamsList != null, 'Teams list cannot be null.');
+        assert(Array.isArray(teamsList), 'Teams list must be array.');
         teamsList.forEach(team => {
-            assert(team != null, 'All teams in teams map must not be null.');
+            assert(team != null, 'All teams in teams list must not be null.');
             assert(typeof(team.isValidTeam)==='function', 'All teams must impliment "isValidTeam".');
             team.isValidTeam();
         });
@@ -129,9 +125,9 @@ export default class GnlLeaderBoard {
 
     __map_teamsList(teamsList) {
         try{
-            this.__validate_teamsList(teamsList);
+            GnlLeaderBoard.__validate_teamsList(teamsList);
         } catch (error) {
-            error.message = `Could not validate teams map: ` + error.message;
+            error.message = `Could not validate teams list: ` + error.message;
             throw error;
         }
         let teamsMap = {};
@@ -145,20 +141,6 @@ export default class GnlLeaderBoard {
         });
 
         return teamsMap;
-    }
-
-    __get_teamsList() {
-        if(this.teamsList != null){
-            return this.teamsList;
-        }
-
-        let teamsList = [];
-        Object.keys(this.teamsMap).forEach(key => {
-            teamsList.push(this.teamsMap[key]);
-        });
-        this.teamsList = teamsList;
-
-        return this.teamsList;
     }
 
     __get_scores() {

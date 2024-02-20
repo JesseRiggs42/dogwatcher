@@ -14,7 +14,8 @@ export default class Team {
         this.scoreAvg = null;
         this.scoreStd = null;
         this.gamesPlayed = null;
-        this.uid = Math.round(1000000000*Math.random());
+        // this is not currently used, but is handy for debug. However, causes a failure in test because an identity check. So commenting for now...
+        // this.uid = Math.round(1000000000*Math.random());
     }
 
     clone() {
@@ -51,6 +52,7 @@ export default class Team {
 
     isValidTeam() {
         assert(!!this.teamName, 'teamName must be declared and non-empty.');
+        assert(typeof(this.teamName) === 'string', `teamName ${this.teamName} must be of type string, but is of type ${typeof(this.teamName)}.`);
         assert(!isNaN(Number.parseInt(this.teamNumber)), `teamNumber "${this.teamNumber}" for team "${this.teamName}" must be an integer.`);
         assert(Array.isArray(this.scores), `scores for team "${this.teamName}" must be an array.`);
         this.scores.forEach(score => {

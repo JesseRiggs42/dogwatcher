@@ -2,15 +2,20 @@ import Team from "../../models/Team";
 import TableMetadata from "../../models/TableMetadata";
 
 function generateValidTeamsList(teamsCount, gamesCount, score) {
-    
+
     let scores = [];
     for(let i = 0; i < gamesCount; i++) {
         scores.push(score);
     }
 
+    return generateValidTeamsListWithScores(teamsCount, scores);
+}
+
+function generateValidTeamsListWithScores(teamsCount, scores) {
+
     let teamsList = [];
     for(let i = 0; i < teamsCount; i++) {
-        teamsList.push(new Team(`Team${i}`, i, scores));
+        teamsList.push(new Team(`Team${i}`, i, [...scores]));
     }
 
     return teamsList;
@@ -33,4 +38,4 @@ function generateValidDates(gamesCount) {
     return dates;
 }
 
-export {generateValidTeamsList, generateValidMetadata, generateMetadata, generateValidDates}
+export { generateValidTeamsList, generateValidTeamsListWithScores, generateValidMetadata, generateMetadata, generateValidDates }
