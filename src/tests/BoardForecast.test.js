@@ -26,6 +26,10 @@ describe("BoardForecast constructs and behaves as expected", () => {
                 expect(extraGameOptions[i]).toEqual(i);
             }
         });
+
+        test("getTitle() returns forecast title.", ()=> {
+            expect(boardForecast.getTitle()).toEqual(metadata.getTitle() + ` ${maxExtraGames} Game Forecast`);
+        });
     
         describe("__create_team() creates TeamForecast", () => {
 

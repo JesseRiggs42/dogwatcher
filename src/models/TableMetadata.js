@@ -41,7 +41,7 @@ export default class TableMetadata{
         assert(Array.isArray(this.dates), 'Table dates must be Array.');
         this.dates.forEach(date => {
             assert(!!date, 'All table dates must be nonempty.');
-            assert(typeof(date) === 'string');
+            assert(typeof(date) === 'string', `Expected table date to be string, found ${typeof(date)}`);
         });
     }
 }
