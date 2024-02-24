@@ -28,13 +28,12 @@ export default class Dispatcher {
         let model = this.models[modelKey];
         if(model === null) {
             let [ baseKey, classKey ] = modelKey.split(constants.KEY_DELIMITER);
-            let baseModel = this.models[baseKey];
-            if(baseModel === null) {
-                let modelHtml = this.fetcher.fetch(baseKey);
-                let parsedHtml = this.parser.parse(modelHtml);
-                model = BoardFactory.create(parsedHtml, classKey);
-            }
-            model = fetchModel(modelKey);
+            // TODO: grab either cached data or fetch new.
+            // culd modelHtml be part of the modelHtml Structure?
+            let modelHtml = this.fetcher.fetch(baseKey, baseKey);
+            let parsedHtml = this.parser.parse(modelHtml, baseKey);
+            model = BoardFactory.create(parsedHtml, classKey);
+            this.models[modelKey] = model;
         }
 
     }
