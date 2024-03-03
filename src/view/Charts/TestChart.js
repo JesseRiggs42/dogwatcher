@@ -4,7 +4,7 @@
  */
 // eslint-disable-next-line
 import { Chart } from "chart.js/auto";
-import { Component } from "react";
+import { Component, React } from "react";
 import { Bar } from "react-chartjs-2";
 
 const chartData = {
