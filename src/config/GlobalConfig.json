@@ -1,6 +1,7 @@
 {
-    "gnlUrl":"https://play.gamenightlive.com",
-    "gnlLeaderBoardPath":"/leaderboards/view/8",
-    "teamKey":"10010",
+    "scoreBoardBaseUrl":"https://play.gamenightlive.com",
+    "scoreBoardBoardPath":"/leaderboards/view/",
+    "scoreBoardBoardNumber":"8",
+    "teamNumber":"10010",
     "teamName":"Raw Dogs"
 }
