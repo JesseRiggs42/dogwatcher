@@ -1,5 +1,5 @@
 import Team from './Team';
-import { validateNumericArray } from '../tools/ValidationTools'
+import { assertIsNumericArray, assert } from '../tools/ValidationTools'
 
 export default class TeamForecast extends Team {
 
@@ -17,12 +17,7 @@ export default class TeamForecast extends Team {
     }
 
     setExtraScores(extraScores) {
-        try{
-            validateNumericArray(extraScores);
-        } catch(error) {
-            error.message = `Could not set extra scores for team "${this.getTeamName()}". ` + error.message;
-            throw error;
-        }
+        assertIsNumericArray(extraScores, 'extraScores', this.getTeamName());
         this.extraScores = extraScores;
         this.__clear_stats();
     }

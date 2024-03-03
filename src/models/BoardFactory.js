@@ -36,11 +36,11 @@ export default class BoardFactory {
         let teamsList = parsedBoard.getTeamsList();
 
         switch (boardClassKey) {
-            case constants.BOARD_CLASS_BASE:
+            case BOARD_CLASS_BASE:
                 return new GnlLeaderBoard(tableMetadata, teamsList);
-            case constants.BOARD_CLASS_1_GAME_FORECAST:
+            case BOARD_CLASS_1_GAME_FORECAST:
                 return new BoardForecast1Game(tableMetadata, teamsList);
-            case constants.BOARD_CLASS_6_GAME_FORECAST:
+            case BOARD_CLASS_6_GAME_FORECAST:
                 return new BoardForecast6Game(tableMetadata, teamsList);
             default:
                 throw new Error(`Could not create Board instance of type "${typeof(boardClassKey)}"`);

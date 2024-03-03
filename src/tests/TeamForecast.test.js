@@ -168,8 +168,7 @@ describe("TeamForecast behaves as expected", () => {
         try {
             teamForecast.setExtraScores(extraScores);
         } catch(error) {
-            expect(error.message).toEqual(`Could not set extra scores for team "${teamName}". `
-                + `Numeric array "${extraScores}" must be array.`)
+            expect(error.message).toEqual(`Numeric array "extraScores" in "teamName" must be array.`);
         }
     });
 
@@ -185,8 +184,7 @@ describe("TeamForecast behaves as expected", () => {
         try {
             teamForecast.setExtraScores(extraScores);
         } catch(error) {
-            expect(error.message).toEqual(`Could not set extra scores for team "${teamName}". `
-                + `Element of numeric array "${rabbit}" must be a number.`)
+            expect(error.message).toEqual(`Element of numeric array "extraScores" in "teamName" must be a number.`);
         }
     });
 
