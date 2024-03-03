@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import View from '../view/View';
+import View from '../../view/View';
 import React from 'react';
 // TODO: For future tests
 // https://stackoverflow.com/questions/53961469/testing-chart-js-with-jest-enzyme-failed-to-create-chart-cant-acquire-contex

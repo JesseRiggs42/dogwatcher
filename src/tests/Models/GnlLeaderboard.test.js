@@ -3,9 +3,9 @@ import {
     generateValidMetadata,
     generateMetadata,
     generateValidDates
-} from "./stubs/GnlBoardStubs";
-import GnlLeaderBoard from "../models/GnlLeaderBoard";
-import Team from "../models/Team";
+} from "../stubs/GnlBoardStubs";
+import GnlLeaderBoard from "../../models/GnlLeaderBoard";
+import Team from "../../models/Team";
 
 describe("GnlLeaderBoard behaves as expected", () => {
 

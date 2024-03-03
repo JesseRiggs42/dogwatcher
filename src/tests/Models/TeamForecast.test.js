@@ -1,4 +1,4 @@
-import TeamForecast from "../models/TeamForecast";
+import TeamForecast from "../../models/TeamForecast";
 
 function runStats (teamForecast) {
     teamForecast.getScoreTotal();

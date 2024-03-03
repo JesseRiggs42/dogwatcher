@@ -2,7 +2,7 @@ import {
     calculateAverage,
     calculateStandardDeviation,
     sumArray
-} from '../tools/MathTools'
+} from '../../tools/MathTools'
 
 describe('MathTools.calculateAverage() calculate expected values.', () => {
     test('calculateAverage calculates average for valid numeric array.', () => {

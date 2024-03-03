@@ -1,4 +1,4 @@
-import TableMetadata from "../models/TableMetadata";
+import TableMetadata from "../../models/TableMetadata";
 
 describe("TableMetadata behaves as expected", () => {
 

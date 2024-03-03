@@ -1,10 +1,10 @@
 import {
     generateValidTeamsList,
     generateValidMetadata
-} from "./stubs/GnlBoardStubs";
-import BoardForecast from "../models/BoardForecast";
-import Team from "../models/Team";
-import TeamForecast from "../models/TeamForecast";
+} from "../stubs/GnlBoardStubs";
+import BoardForecast from "../../models/BoardForecast";
+import Team from "../../models/Team";
+import TeamForecast from "../../models/TeamForecast";
 
 const maxExtraGames = 1;
 const teamName = 'Team0';

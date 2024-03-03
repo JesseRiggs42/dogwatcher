@@ -1,7 +1,7 @@
 import {
     assert,
     assertIsNumericArray
-} from '../tools/ValidationTools'
+} from '../../tools/ValidationTools'
 
 describe('ValidationTools vaidate parameters:', () => {
     describe('assert() behaves as expected:', () => {

@@ -1,4 +1,4 @@
-import Team from '../models/Team';
+import Team from '../../models/Team';
 
 describe("Team constructs and behaves as expected", () => {
 
