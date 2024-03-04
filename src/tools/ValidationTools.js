@@ -7,7 +7,8 @@ function assert(valid, message) {
 }
 
 function assertIsBoolean(boolean, elementName, context) {
-    assert(typeof(boolean) === 'boolean', `Element "${elementName}" in "${context}" is expected to be of type "boolean" but is "${typeof(boolean)}.`);
+    assert(boolean !== null, `Element "${elementName}" in "${context}" is expected to be non-null`);
+    assert(typeof(boolean) === 'boolean', `Element "${elementName}" in "${context}" is expected to be of type "boolean" but is "${typeof(boolean)}".`);
 }
 
 function assertNonEmptyString(string, elementName, context) {
@@ -29,11 +30,11 @@ function assertIsNumericArray(numbers, elementName, context) {
 }
 
 function assertIsStringArray(stringArray, elementName, context) {
-    assertIsDefinedNotNull(element, elementName, context);
+    assertIsDefinedNotNull(stringArray, elementName, context);
     assert(Array.isArray(stringArray), `Element "${elementName}" in "${context}" is expected to be of type "array" but is "${typeof(stringArray)}".`);
     stringArray.forEach(string => {
-        assert(typeof(string) === 'string', `Element "${string}" of String Array "${elementName}" in "${context}" is expected to be of type "string" but is "${typeof(string)}.`);
+        assert(typeof(string) === 'string', `Element "${string}" of String Array "${elementName}" in "${context}" is expected to be of type "string" but is "${typeof(string)}".`);
     });
 }
 
-export { assert, assertIsBoolean, assertNonEmptyString, assertIsStringArray, assertIsNumericArray }
+export { assert, assertIsBoolean, assertIsDefinedNotNull, assertIsNumericArray, assertIsStringArray, assertNonEmptyString }
