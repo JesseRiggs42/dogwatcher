@@ -38,4 +38,21 @@ function generateValidDates(gamesCount) {
     return dates;
 }
 
-export { generateValidTeamsList, generateValidTeamsListWithScores, generateValidMetadata, generateMetadata, generateValidDates }
+function generateParsedHtmlStub(dates, dateline, key, teamsList, title) {
+    return {
+        getDates    : () => dates,
+        getDateline : () => dateline,
+        getKey      : () => key,
+        getTeamsList: () => teamsList,
+        getTitle    : () => title,
+    };
+}
+
+export {
+    generateMetadata,
+    generateParsedHtmlStub,
+    generateValidMetadata,
+    generateValidTeamsList,
+    generateValidTeamsListWithScores,
+    generateValidDates
+}

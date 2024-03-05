@@ -21,20 +21,24 @@ function assertIsDefinedNotNull(element, elementName, context) {
     assert(element !== null, `Element "${elementName}" in "${context}" is expected to be non-null`);
 }
 
-function assertIsNumericArray(numbers, elementName, context) {
-    assertIsDefinedNotNull(numbers, elementName, context);
-    assert(Array.isArray(numbers), `Numeric array "${elementName}" in "${context}" must be array.`);
+function assertIsNumericArray(numbers, arrayName, context) {
+    assertIsDefinedNotNull(numbers, arrayName, context);
+    assert(Array.isArray(numbers), `Numeric array "${arrayName}" in "${context}" must be array.`);
     numbers.forEach(number => {
-        assert(!isNaN(Number.parseFloat(number)), `Element of numeric array "${elementName}" in "${context}" must be a number.`);
+        assert(!isNaN(Number.parseFloat(number)), `Element of numeric array "${arrayName}" in "${context}" must be a number.`);
     });
 }
 
-function assertIsStringArray(stringArray, elementName, context) {
-    assertIsDefinedNotNull(stringArray, elementName, context);
-    assert(Array.isArray(stringArray), `Element "${elementName}" in "${context}" is expected to be of type "array" but is "${typeof(stringArray)}".`);
+function assertIsStringArray(stringArray, arrayName, context) {
+    assertIsDefinedNotNull(stringArray, arrayName, context);
+    assert(Array.isArray(stringArray), `Element "${arrayName}" in "${context}" is expected to be of type "array" but is "${typeof(stringArray)}".`);
     stringArray.forEach(string => {
-        assert(typeof(string) === 'string', `Element "${string}" of String Array "${elementName}" in "${context}" is expected to be of type "string" but is "${typeof(string)}".`);
+        assert(typeof(string) === 'string', `Element "${string}" of String Array "${arrayName}" in "${context}" is expected to be of type "string" but is "${typeof(string)}".`);
     });
 }
 
-export { assert, assertIsBoolean, assertIsDefinedNotNull, assertIsNumericArray, assertIsStringArray, assertNonEmptyString }
+function assertNotInstantiated(object, objName) {
+    assert(object === undefined || object === null, `Error: "${objName}" cannot be instantiated twice.`);
+}
+
+export { assert, assertIsBoolean, assertIsDefinedNotNull, assertIsNumericArray, assertIsStringArray, assertNonEmptyString, assertNotInstantiated }

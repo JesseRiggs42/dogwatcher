@@ -4,7 +4,8 @@ import {
     assertIsDefinedNotNull,
     assertIsNumericArray,
     assertIsStringArray,
-    assertNonEmptyString
+    assertNonEmptyString,
+    assertNotInstantiated
 } from '../../tools/ValidationTools'
 
 describe('ValidationTools vaidate parameters:', () => {
@@ -144,8 +145,8 @@ describe('ValidationTools vaidate parameters:', () => {
 
     describe('assertIsStringArray() behaves as expected:', () => {
         test('returns normally on valid string array.', () => {
-            assertIsStringArray([]);
-            assertIsStringArray(['0','false','undefined','null','']);
+            assertIsStringArray([], 'array','context');
+            assertIsStringArray(['0','false','undefined','null',''], 'array','context');
         });
 
         test('throws on null array.', () => {
@@ -193,4 +194,21 @@ describe('ValidationTools vaidate parameters:', () => {
             }
         });
     });
+
+    describe('assertNotInstantiated() behaves as expected:', () => {
+        test('returns normally on undefined and null.', () => {
+            assertNotInstantiated(undefined, 'object');
+            assertNotInstantiated(null, 'object');
+        });
+
+        test('throws on objec.', () => {
+            try{
+                assertNotInstantiated({}, 'object');
+                expect(false).toEqual('Should have thrown.');
+            } catch(error) {
+                expect(error.message).toEqual('Error: "object" cannot be instantiated twice.');
+            }
+        });
+    });
+
 });
