@@ -4,6 +4,7 @@ import GnlLeaderBoard from './GnlLeaderBoard';
 import TableMetadata from './TableMetadata';
 import {
     assertIsDefinedNotNull,
+    assertIsFunction,
     assertNotInstantiated
 } from '../tools/ValidationTools'
 import {
@@ -36,7 +37,7 @@ export default class BoardFactory {
     create(parsedHtmlBoard, boardClassKey) {
         assertIsDefinedNotNull(boardClassKey, 'BoardClassKey', 'BoardFactory.create(...)');
         assertIsDefinedNotNull(parsedHtmlBoard, 'ParsedBoard', 'BoardFactory.create(...)');
-        assertIsDefinedNotNull(parsedHtmlBoard.getKey(), 'ParsedHtmlBoard.key', 'BoardFactory.create(...)');
+        assertIsFunction(parsedHtmlBoard.getKey, 'ParsedHtmlBoard.getKey()', 'BoardFactory.create(...)');
 
         let cacheKey = `${parsedHtmlBoard.getKey()}${MODEL_KEY_DELIMITER}${boardClassKey}`;
         if(boardCache[cacheKey]) {

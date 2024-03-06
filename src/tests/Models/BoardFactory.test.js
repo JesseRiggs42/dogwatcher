@@ -7,19 +7,16 @@ import {
 } from '../../constants/Constants';
 
 describe("BoardFactory behaves as expected.", () => {
-    describe("with invalid parameters", () => {
-        test("negative test", () => {console.error("add negative testing.")});
-    });
+    let boardFactory;
+    const validDates     = ['mm/dd','mm/dd'];
+    const validDateline  = '2000-2000';
+    const validHtmlKey   = 'Board10';
+    const validTeamsList = generateValidTeamsListWithScores(1, [1]);
+    const baseTitle      = 'Base Title'
+    const forecast1Title = 'Forecast 1 Title'
+    const forecast6Title = 'Forecast 6 Title'
 
     describe("with valid parameters", () => {
-        let boardFactory;
-        const validDates     = ['mm/dd','mm/dd'];
-        const validDateline  = '2000-2000';
-        const validHtmlKey   = 'Board10';
-        const validTeamsList = generateValidTeamsListWithScores(1, [1]);
-        const baseTitle      = 'Base Title'
-        const forecast1Title = 'Forecast 1 Title'
-        const forecast6Title = 'Forecast 6 Title'
 
         test("Constructs as expected.", () => {
             boardFactory = new BoardFactory();
@@ -97,4 +94,112 @@ describe("BoardFactory behaves as expected.", () => {
             expect(boardCached).toEqual(boardBase);
         });
     });
+
+    describe("with invalid parameters", () => {
+        // const validDates     = ['mm/dd','mm/dd'];
+        // const validDateline  = '2000-2000';
+        const validHtmlKey   = 'Board13';
+        // const validTeamsList = generateValidTeamsListWithScores(1, [1]);
+        // const baseTitle      = 'Base Title'
+        // const forecast1Title = 'Forecast 1 Title'
+        // const forecast6Title = 'Forecast 6 Title'
+    
+        test("create() throws error on null and undefined boardClassKey.", () => {
+            try {
+                let parsedHtmlStub = generateParsedHtmlStub (
+                    validDates,
+                    validDateline,
+                    validHtmlKey,
+                    validTeamsList,
+                    baseTitle);
+                boardFactory.create(parsedHtmlStub, undefined);
+                expect('didn\'t').toEqual('to throw error');
+            } catch(error) {
+                expect(error.message).toBe('Element "BoardClassKey" in "BoardFactory.create(...)" is expected to be defined.');
+            }
+        });
+        test("create() throws error on null parsedHtmlBoard.", () => {
+            try {
+                let boardCached = boardFactory.create(null, BOARD_CLASS_BASE);
+                expect('didn\'t').toEqual('to throw error');
+            } catch(error) {
+                expect(error.message).toBe('Element "ParsedBoard" in "BoardFactory.create(...)" is expected to be non-null');
+            }
+        });
+
+        test("create() throws error on undefined parsedHtmlBoard.", () => {
+            try {
+                let boardCached = boardFactory.create(undefined, BOARD_CLASS_BASE);
+                expect('didn\'t').toEqual('to throw error');
+            } catch(error) {
+                expect(error.message).toBe('Element "ParsedBoard" in "BoardFactory.create(...)" is expected to be defined.');
+            }
+        });
+
+        test("create() throws error when parsedHtmlBoard.getKey is undefined.", () => {
+            try {
+                let parsedHtmlStub = generateParsedHtmlStub (
+                    validDates,
+                    validDateline,
+                    validHtmlKey,
+                    validTeamsList,
+                    baseTitle);
+                parsedHtmlStub.getKey = undefined;
+                boardBase = boardFactory.create(parsedHtmlStub, BOARD_CLASS_BASE);
+                expect('didn\'t').toEqual('to throw error');
+            } catch(error) {
+                expect(error.message).toBe('Element "ParsedHtmlBoard.getKey()" in "BoardFactory.create(...)" is expected to be defined.');
+            }
+        });
+
+        test("create() throws error when parsedHtmlBoard.getKey is undefined.", () => {
+            try {
+                let parsedHtmlStub = generateParsedHtmlStub (
+                    validDates,
+                    validDateline,
+                    validHtmlKey,
+                    validTeamsList,
+                    baseTitle);
+                parsedHtmlStub.getKey = undefined;
+                boardBase = boardFactory.create(parsedHtmlStub, BOARD_CLASS_BASE);
+                expect('didn\'t').toEqual('to throw error');
+            } catch(error) {
+                expect(error.message).toBe('Element "ParsedHtmlBoard.getKey()" in "BoardFactory.create(...)" is expected to be defined.');
+            }
+        });
+
+        test("create() throws error when parsedHtmlBoard.getKey is null.", () => {
+            try {
+                let parsedHtmlStub = generateParsedHtmlStub (
+                    validDates,
+                    validDateline,
+                    validHtmlKey,
+                    validTeamsList,
+                    baseTitle);
+                parsedHtmlStub.getKey = null;
+                boardBase = boardFactory.create(parsedHtmlStub, BOARD_CLASS_BASE);
+                expect('didn\'t').toEqual('to throw error');
+            } catch(error) {
+                expect(error.message).toBe('Element "ParsedHtmlBoard.getKey()" in "BoardFactory.create(...)" is expected to be non-null');
+            }
+        });
+
+        test("create() throws error when parsedHtmlBoard.getKey is object.", () => {
+            try {
+                let parsedHtmlStub = generateParsedHtmlStub (
+                    validDates,
+                    validDateline,
+                    validHtmlKey,
+                    validTeamsList,
+                    baseTitle);
+                parsedHtmlStub.getKey = {};
+                boardBase = boardFactory.create(parsedHtmlStub, BOARD_CLASS_BASE);
+                expect('didn\'t').toEqual('to throw error');
+            } catch(error) {
+                expect(error.message).toBe('"ParsedHtmlBoard.getKey()" is expected to be of type "function" but is "object".');
+            }
+        });
+
+    });
+
 });

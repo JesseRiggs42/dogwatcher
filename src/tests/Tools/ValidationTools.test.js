@@ -2,6 +2,7 @@ import {
     assert,
     assertIsBoolean,
     assertIsDefinedNotNull,
+    assertIsFunction,
     assertIsNumericArray,
     assertIsStringArray,
     assertNonEmptyString,
@@ -211,4 +212,37 @@ describe('ValidationTools vaidate parameters:', () => {
         });
     });
 
+    describe('assertIsFunction() behaves as expected:', () => {
+        test('returns normally on function.', () => {
+            assertIsFunction(() => {return 'null'}, 'functionName', 'context');
+        });
+
+        test('throws on objec.', () => {
+            try{
+                assertIsFunction({}, 'functionName', 'context');
+                expect(false).toEqual('Should have thrown.');
+            } catch(error) {
+                expect(error.message).toEqual('"functionName" is expected to be of type "function" but is "object".');
+            }
+        });
+
+        test('throws on null.', () => {
+            try{
+                assertIsFunction(null, 'functionName', 'context');
+                expect(false).toEqual('Should have thrown.');
+            } catch(error) {
+                expect(error.message).toEqual('Element "functionName" in "context" is expected to be non-null');
+            }
+        });
+
+        test('throws on undefined.', () => {
+            try{
+                assertIsFunction(undefined, 'functionName', 'context');
+                expect(false).toEqual('Should have thrown.');
+            } catch(error) {
+                expect(error.message).toEqual('Element "functionName" in "context" is expected to be defined.');
+            }
+        });
+
+    });
 });

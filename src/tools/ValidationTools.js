@@ -21,6 +21,11 @@ function assertIsDefinedNotNull(element, elementName, context) {
     assert(element !== null, `Element "${elementName}" in "${context}" is expected to be non-null`);
 }
 
+function assertIsFunction(func, functionName, context) {
+    assertIsDefinedNotNull(func, functionName, context);
+    assert(typeof(func) === 'function', `"${functionName}" is expected to be of type "function" but is "${typeof(func)}".`);
+}
+
 function assertIsNumericArray(numbers, arrayName, context) {
     assertIsDefinedNotNull(numbers, arrayName, context);
     assert(Array.isArray(numbers), `Numeric array "${arrayName}" in "${context}" must be array.`);
@@ -41,4 +46,4 @@ function assertNotInstantiated(object, objName) {
     assert(object === undefined || object === null, `Error: "${objName}" cannot be instantiated twice.`);
 }
 
-export { assert, assertIsBoolean, assertIsDefinedNotNull, assertIsNumericArray, assertIsStringArray, assertNonEmptyString, assertNotInstantiated }
+export { assert, assertIsBoolean, assertIsDefinedNotNull, assertIsFunction, assertIsNumericArray, assertIsStringArray, assertNonEmptyString, assertNotInstantiated }
