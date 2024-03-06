@@ -12,7 +12,7 @@ describe("Interpreter behaves as expected", () => {
                 interpreter = new Interpreter(null, null);
                 expect('didn\'t').toEqual('to throw error');
             } catch(error) {
-                expect(error.message).toEqual('Error: countryCodeSelector cannot be null.');
+                expect(error.message).toEqual('Element "countryCodeSelector" in "Interpreter.constructor(...)" is expected to be non-null');
             }
         });
         test("Non-function countryCodeSelector throws expected error.", () => {
@@ -20,7 +20,7 @@ describe("Interpreter behaves as expected", () => {
                 interpreter = new Interpreter(42, null);
                 expect('didn\'t').toEqual('to throw error');
             } catch(error) {
-                expect(error.message).toEqual('Error: countryCodeSelector must be function, found number.');
+                expect(error.message).toEqual('"countryCodeSelector" is expected to be of type "function" but is "number".');
             }
         });
 
@@ -29,15 +29,15 @@ describe("Interpreter behaves as expected", () => {
                 interpreter = new Interpreter(()=>{''}, null);
                 expect('didn\'t').toEqual('to throw error');
             } catch(error) {
-                expect(error.message).toEqual('Error: languageRepor cannot be null.');
+                expect(error.message).toEqual('Element "languageRepo" in "Interpreter.constructor(...)" is expected to be non-null');
             }
         });
-        test("Non-function languageRepo throws expected error.", () => {
+        test("Undefined languageRepo throws expected error.", () => {
             try {
                 interpreter = new Interpreter(()=>{''}, undefined);
                 expect('didn\'t').toEqual('to throw error');
             } catch(error) {
-                expect(error.message).toEqual('Error: languageRepo must be function, found undefined.');
+                expect(error.message).toEqual('Element "languageRepo" in "Interpreter.constructor(...)" is expected to be defined.');
             }
         });
     });

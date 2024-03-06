@@ -1,4 +1,7 @@
-import { keys } from '../constants/lang/Base'
+import { keys } from '../constants/lang/Base';
+import { assertIsFunction } from '../tools/ValidationTools';
+
+const INTERPRETER_CONSTRUCTOR = 'Interpreter.constructor(...)';
 
 let interpreterInstance;
 
@@ -12,18 +15,8 @@ export default class Interpreter {
                     keys.ERROR_CANNOT_INSTANTIATE_TWICE,
                     interpreterInstance.constructor.name));
         }
-        if(countryCodeSelector === null) {
-            throw new Error('Error: countryCodeSelector cannot be null.');
-        }
-        if(typeof(countryCodeSelector) !== 'function') {
-            throw new Error(`Error: countryCodeSelector must be function, found ${typeof(countryCodeSelector)}.`);
-        }
-        if(languageRepo === null) {
-            throw new Error('Error: languageRepor cannot be null.');
-        }
-        if(typeof(languageRepo) !== 'function') {
-            throw new Error(`Error: languageRepo must be function, found ${typeof(languageRepo)}.`);
-        }
+        assertIsFunction(countryCodeSelector,'countryCodeSelector',INTERPRETER_CONSTRUCTOR);
+        assertIsFunction(languageRepo,'languageRepo',INTERPRETER_CONSTRUCTOR);
         interpreterInstance = this;
         this.languageRepo = languageRepo;
         this.countryCodeSelector = countryCodeSelector;
