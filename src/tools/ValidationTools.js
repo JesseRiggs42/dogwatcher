@@ -1,5 +1,3 @@
-// TODO: MOST OF THESE FUNCTIONS ARE UNTESTED
-
 function assert(valid, message) {
     if(!valid) {
         throw new Error(message);
@@ -26,6 +24,11 @@ function assertIsFunction(func, functionName, context) {
     assert(typeof(func) === 'function', `"${functionName}" is expected to be of type "function" but is "${typeof(func)}".`);
 }
 
+function assertIsNumber(number, numberName, context) {
+    assertIsDefinedNotNull(number, numberName, context);
+    assert(!isNaN(Number.parseInt(number)), `"${numberName}" is expected to be a number in "${context}".`);
+}
+
 function assertIsNumericArray(numbers, arrayName, context) {
     assertIsDefinedNotNull(numbers, arrayName, context);
     assert(Array.isArray(numbers), `Numeric array "${arrayName}" in "${context}" must be array.`);
@@ -42,8 +45,38 @@ function assertIsStringArray(stringArray, arrayName, context) {
     });
 }
 
+function assertIsString(string, stringName, context) {
+    assertIsDefinedNotNull(string, stringName, context);
+    assert(typeof(string) === 'string', `"${stringName}" in "${context}" is expected to be of type "string" but is "${typeof(string)}".`);
+}
+
+function assertIsSupported(supported, optionName, context) {
+    if(!supported) {
+        throw new Error(`Error: "${optionName}" is not supported by "${context}".`);
+    }
+}
+
+function assertIsValid(valid, subject, description) {
+    if(!valid) {
+        throw new Error(`Could not validate "${subject}": ${description}`);
+    }
+}
+
 function assertNotInstantiated(object, objName) {
     assert(object === undefined || object === null, `Error: "${objName}" cannot be instantiated twice.`);
 }
 
-export { assert, assertIsBoolean, assertIsDefinedNotNull, assertIsFunction, assertIsNumericArray, assertIsStringArray, assertNonEmptyString, assertNotInstantiated }
+export {
+    assert,
+    assertIsBoolean,
+    assertIsDefinedNotNull,
+    assertIsFunction,
+    assertIsNumber,
+    assertIsNumericArray,
+    assertIsString,
+    assertIsStringArray,
+    assertIsSupported,
+    assertIsValid,
+    assertNonEmptyString,
+    assertNotInstantiated
+}

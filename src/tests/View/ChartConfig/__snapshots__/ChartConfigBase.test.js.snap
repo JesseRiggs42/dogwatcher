@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChartConfigBase behaves as expected with valid parameters getConfig()  matches snapshot. 1`] = `"{\\"type\\":\\"Config Type\\",\\"options\\":{\\"indexAxis\\":\\"y\\",\\"elements\\":{\\"bar\\":{\\"borderWidth\\":2,\\"borderSkipped\\":false,\\"borderRadius\\":1.7976931348623157e+308}},\\"plugins\\":{\\"legend\\":{\\"position\\":\\"top\\"},\\"title\\":{\\"display\\":true,\\"text\\":\\"Config Title\\"}},\\"responsive\\":true,\\"scales\\":{\\"x\\":{\\"stacked\\":true},\\"y\\":{\\"barThickness\\":0.1,\\"stacked\\":true}}},\\"data\\":{\\"labels\\":[\\"label1\\",\\"label2\\"],\\"datasets\\":[]},\\"style\\":{\\"width\\":10,\\"height\\":20}}"`;
+
+exports[`ChartConfigBase behaves as expected with valid parameters getDatasets() matches snapshot. 1`] = `"[]"`;
+
+exports[`ChartConfigBase behaves as expected with valid parameters getElements() matches snapshot. 1`] = `"{\\"bar\\":{\\"borderWidth\\":2,\\"borderSkipped\\":false,\\"borderRadius\\":1.7976931348623157e+308}}"`;
+
+exports[`ChartConfigBase behaves as expected with valid parameters getHeight() matches snapshot. 1`] = `"20"`;
+
+exports[`ChartConfigBase behaves as expected with valid parameters getLabels() matches snapshot. 1`] = `"[\\"label1\\",\\"label2\\"]"`;
+
+exports[`ChartConfigBase behaves as expected with valid parameters getOptions() matches snapshot. 1`] = `"{\\"indexAxis\\":\\"y\\",\\"elements\\":{\\"bar\\":{\\"borderWidth\\":2,\\"borderSkipped\\":false,\\"borderRadius\\":1.7976931348623157e+308}},\\"plugins\\":{\\"legend\\":{\\"position\\":\\"top\\"},\\"title\\":{\\"display\\":true,\\"text\\":\\"Config Title\\"}},\\"responsive\\":true,\\"scales\\":{\\"x\\":{\\"stacked\\":true},\\"y\\":{\\"barThickness\\":0.1,\\"stacked\\":true}}}"`;
+
+exports[`ChartConfigBase behaves as expected with valid parameters getPlugins() matches snapshot. 1`] = `"{\\"legend\\":{\\"position\\":\\"top\\"},\\"title\\":{\\"display\\":true,\\"text\\":\\"Config Title\\"}}"`;
+
+exports[`ChartConfigBase behaves as expected with valid parameters getScales() matches snapshot. 1`] = `"{\\"x\\":{\\"stacked\\":true},\\"y\\":{\\"barThickness\\":0.1,\\"stacked\\":true}}"`;
+
+exports[`ChartConfigBase behaves as expected with valid parameters getStyle() matches snapshot. 1`] = `"{\\"width\\":10,\\"height\\":20}"`;
+
+exports[`ChartConfigBase behaves as expected with valid parameters getTitle() matches snapshot. 1`] = `"\\"Config Title\\""`;
+
+exports[`ChartConfigBase behaves as expected with valid parameters getType() matches snapshot. 1`] = `"\\"Config Type\\""`;
+
+exports[`ChartConfigBase behaves as expected with valid parameters getWidth() matches snapshot. 1`] = `"10"`;
+
+exports[`ChartConfigBase behaves as expected with valid parameters isHorizontle() matches snapshot. 1`] = `"\\"false\\""`;
+
+exports[`ChartConfigBase behaves as expected with valid parameters isResponsive() matches snapshot. 1`] = `"true"`;

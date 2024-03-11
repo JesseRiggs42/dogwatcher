@@ -1,9 +1,43 @@
-import { assertIsBoolean, assertNonEmptyString, assertIsStringArray, assertIsNumericArray } from '../../tools/ValidationTools';
+import { plugins } from 'chart.js';
+import {
+    assertIsString,
+    assertIsStringArray,
+} from '../../tools/ValidationTools';
+import {
+    BARTHICKNESS,
+    BORDERRADIUS,
+    BORDERSKIPPED,
+    BORDERWIDTH,
+    DATA,
+    DATASETS,
+    DISPLAY,
+    ELEMENTS,
+    HEIGHT,
+    INDEXAXIS,
+    LABELS,
+    LEGEND,
+    ORI_HORIZONTLE,
+    ORI_VERTICLE,
+    OPTIONS,
+    PLUGINS,
+    POSITION,
+    POSITION_TOP,
+    RESPONSIVE,
+    SCALES,
+    STACKED,
+    STYLE,
+    TEXT,
+    TITLE,
+    TYPE,
+    WIDTH,
+    X,
+    Y,
+} from '../../constants/ChartConstants';
 
 export default class ChartConfigBase {
     // colors as array https://stackoverflow.com/questions/25594478/different-color-for-each-bar-in-a-bar-chart-chartjs
     constructor(title, type, labels, width, height, isHorizontle) {
-        this.dataSet = [];
+        this.datasets = [];
         this.height = height;
         this.horizontle = isHorizontle;
         this.labels = labels;
@@ -11,27 +45,40 @@ export default class ChartConfigBase {
         this.title = title;
         this.type = type;
         this.width = width;
+
+        assertIsStringArray(labels, LABELS, this.constructor.name);
+        assertIsString(title, TITLE, this.constructor.name);
     }
 
+    // This is the final step. Unless overridden, this will return the same structure of agregated data.
+    // The idea being that all decorations will return their own parts concatenated with the parts of their decorated.
+    // This should only be called from the highest level.
     getConfig() {
         return {
-            type: this.getType(),
-            options: this.getOptions(),
-            data: this.getDataSets(),
-            style: this.getStyle(),
+            [TYPE]    : this.getType(),
+            [OPTIONS] : this.getOptions(),
+            [DATA]    : this.getData(),
+            [STYLE]   : this.getStyle(),
         }
     }
 
-    getDataSets() {
-        return this.dataSet;
+    getData() {
+        return {
+            [LABELS]  : this.getLabels(),
+            [DATASETS]: this.getDatasets(),
+        };
+    }
+
+    getDatasets() {
+        return this.datasets;
     }
 
     getElements() {
         return {
             bar: {
-                borderWidth: 2,
-                borderSkipped: 'false',
-                borderRadius: Number.MAX_VALUE,
+                [BORDERWIDTH]  : 2,
+                [BORDERSKIPPED]: false,
+                [BORDERRADIUS] : Number.MAX_VALUE,
             }
         };
     }
@@ -42,11 +89,11 @@ export default class ChartConfigBase {
 
     getOptions() {
         return {
-            indexAxis: this.isHorizontle() ? 'y' : 'x',
-            elements: this.getElements(),
-            plugins: this.getPlugins(),
-            responsive: this.isResponsive(),
-            scales: this.getScales()
+            [INDEXAXIS]   : this.isHorizontle() ? ORI_HORIZONTLE : ORI_VERTICLE,
+            [ELEMENTS]    : this.getElements(),
+            [PLUGINS]     : this.getPlugins(),
+            [RESPONSIVE]  : this.isResponsive(),
+            [SCALES]      : this.getScales()
         };
     }
 
@@ -56,32 +103,32 @@ export default class ChartConfigBase {
 
     getPlugins() {
         return {
-            legend: {
-                position: 'top',
+            [LEGEND]: {
+                [POSITION]: POSITION_TOP,
             },
-            title: {
-                display: true,
-                text: this.title
+            [TITLE]: {
+                [DISPLAY] : true,
+                [TEXT]    : this.title
             }
         };
     }
 
     getScales() {
         return {
-            x: {
-                stacked: true,
+            [X]: {
+                [STACKED]: true,
             },
-            y: {
-                barThickness: 0.1,
-                stacked: true,
+            [Y]: {
+                [BARTHICKNESS]: 0.1,
+                [STACKED]     : true,
             }
         }
     }
 
     getStyle() {
         return {
-            width: this.getWidth() ?? 750,
-            height: this.getHeight() ?? 350,
+            [WIDTH]   : this.getWidth() ?? 750,
+            [HEIGHT]  : this.getHeight() ?? 350,
         };
     }
     
@@ -105,17 +152,4 @@ export default class ChartConfigBase {
         return this.responsive;
     }
 
-    validate() {
-        assertNonEmptyString(this.getTitle(), 'Title');
-        assertNonEmptyString(this.getType(), 'Type');
-        assertIsBoolean(this.isHorizontle(), 'isHorizontle');
-        assertIsStringArray(this.getLabels(), 'Labels');
-        assertIsBoolean(this.isResponsive(), 'isResponsive');
-        this.validateDataset();
-    }
-
-    validateDataset() {
-        assert(!!this.dataSet, `Dataset must be defined and non-null, found "${typeof(this.dataSet)}".`)
-        assertIsNumericArray(this.dataSet.data);
-    }
 }

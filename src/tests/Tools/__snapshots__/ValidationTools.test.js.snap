@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidationTools vaidate parameters: assertIsNumber() behaves as expected. throws on null. 1`] = `"Element \\"nuberName\\" in \\"test\\" is expected to be non-null"`;
+
+exports[`ValidationTools vaidate parameters: assertIsNumber() behaves as expected. throws on string. 1`] = `"\\"nuberName\\" is expected to be a number in \\"test\\"."`;
+
+exports[`ValidationTools vaidate parameters: assertIsNumber() behaves as expected. throws on undefined. 1`] = `"Element \\"nuberName\\" in \\"test\\" is expected to be defined."`;
+
+exports[`ValidationTools vaidate parameters: assertIsString() behaves as expected: throws on null. 1`] = `"Element \\"stringName\\" in \\"test\\" is expected to be non-null"`;
+
+exports[`ValidationTools vaidate parameters: assertIsString() behaves as expected: throws on undefined. 1`] = `"Element \\"stringName\\" in \\"test\\" is expected to be defined."`;
+
+exports[`ValidationTools vaidate parameters: assertIsString() behaves as expected: throws on undefined. 2`] = `"\\"stringName\\" in \\"test\\" is expected to be of type \\"string\\" but is \\"number\\"."`;
+
+exports[`ValidationTools vaidate parameters: assertIsSupported() behaves as expected throws on null. 1`] = `"Error: \\"nuberName\\" is not supported by \\"test\\"."`;
+
+exports[`ValidationTools vaidate parameters: assertIsSupported() behaves as expected throws on undefined. 1`] = `"Error: \\"nuberName\\" is not supported by \\"test\\"."`;
+
+exports[`ValidationTools vaidate parameters: assertIsValid() behaves as expected throws on false. 1`] = `"Could not validate \\"config\\": because something happened."`;

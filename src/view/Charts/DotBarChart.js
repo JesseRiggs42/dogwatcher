@@ -5,6 +5,14 @@
 import { Chart } from "chart.js/auto";
 import { Component } from "react";
 import { Bar } from "react-chartjs-2";
+import {
+    CYAN_SOLID,
+    CYAN_TRANSPARENT,
+    GRAY_THIN_TRANSPARENT,
+    GRAY_TRANSPARENT,
+    YELLOW_SOLID,
+    YELLOW_TRANSPARENT
+} from '../../constants/Styles';
 
 export default class DotBarChart extends Component {
 
@@ -45,10 +53,10 @@ export default class DotBarChart extends Component {
             label: dots.label,
             data: dots.data,
             fill: false,
-            borderColor: "rgba(75,192,192,1)",
+            borderColor: CYAN_SOLID,
             borderWidth: 0,
-            drawActiveElementsOnTop: "true",
-            pointBackgroundColor: "rgba(75,192,192,0.5)",
+            drawActiveElementsOnTop: true,
+            pointBackgroundColor: CYAN_TRANSPARENT,
             pointBorderWidth: 3,
             pointHitRadius: 30,
             pointHoverRadius: 20,
@@ -62,8 +70,8 @@ export default class DotBarChart extends Component {
             label: bars.label,
             data: bars.data,
             fill: true,
-            backgroundColor: "rgba(192,192,75,0.2)",
-            borderColor: "rgba(192,192,75,1)",
+            backgroundColor: YELLOW_TRANSPARENT,
+            borderColor: YELLOW_SOLID,
             borderRadius: Number.MAX_VALUE,
             barThickness: 8,
         }
@@ -75,7 +83,7 @@ export default class DotBarChart extends Component {
             data: offsets.data,
             barThickness: 8,
             fill: false,
-            borderColor: "rgba(192,192,192,0.25)"
+            borderColor: GRAY_THIN_TRANSPARENT
         }
     }
 
@@ -84,7 +92,7 @@ export default class DotBarChart extends Component {
             label: label,
             data: dotBisections,
             fill: false,
-            borderColor: "rgba(192,192,192,0.5)",
+            borderColor: GRAY_TRANSPARENT,
             borderWidth: 2,
             pointBorderWidth: 0,
             type: 'line'

@@ -3,8 +3,12 @@ import {
     assertIsBoolean,
     assertIsDefinedNotNull,
     assertIsFunction,
+    assertIsNumber,
     assertIsNumericArray,
+    assertIsString,
     assertIsStringArray,
+    assertIsSupported,
+    assertIsValid,
     assertNonEmptyString,
     assertNotInstantiated
 } from '../../tools/ValidationTools'
@@ -144,6 +148,39 @@ describe('ValidationTools vaidate parameters:', () => {
         });
     });
 
+    describe('assertIsString() behaves as expected:', () => {
+        const stringName = 'stringName';
+        const context = 'test';
+        test('returns as expected on string.', () => {
+            assertIsString('string', stringName, context);
+        });
+        test('throws on null.', () => {
+            try{
+                assertIsString(null, stringName, context);
+                expect(false).toEqual('Should have thrown.');
+            } catch(error) {
+                expect(error.message).toMatchSnapshot();
+            }
+        });
+
+        test('throws on undefined.', () => {
+            try{
+                assertIsString(undefined, stringName, context);
+                expect(false).toEqual('Should have thrown.');
+            } catch(error) {
+                expect(error.message).toMatchSnapshot();
+            }
+        });
+        test('throws on undefined.', () => {
+            try{
+                assertIsString(42, stringName, context);
+                expect(false).toEqual('Should have thrown.');
+            } catch(error) {
+                expect(error.message).toMatchSnapshot();
+            }
+        });
+    });
+
     describe('assertIsStringArray() behaves as expected:', () => {
         test('returns normally on valid string array.', () => {
             assertIsStringArray([], 'array','context');
@@ -244,5 +281,85 @@ describe('ValidationTools vaidate parameters:', () => {
             }
         });
 
+    });
+
+    describe('assertIsNumber() behaves as expected.', () => {
+        const numberName = 'nuberName';
+        const context = 'test';
+        test('returns normal on integer.', () => {
+            assertIsNumber(10, numberName, context);
+        });
+        test('returns normal on negative decimal.', () => {
+            assertIsNumber(-3.14159, numberName, context);
+        });
+        test('returns normal on really big.', () => {
+            assertIsNumber(Number.MAX_VALUE, numberName, context);
+        });
+        test('returns normal on really small.', () => {
+            assertIsNumber(Number.MIN_VALUE, numberName, context);
+        });
+        test('throws on undefined.', () => {
+            try{
+                assertIsNumber(undefined, numberName, context);
+                expect(false).toEqual('Should have thrown.');
+            } catch(error) {
+                expect(error.message).toMatchSnapshot();
+            }
+        });
+        test('throws on null.', () => {
+            try{
+                assertIsNumber(null, numberName, context);
+                expect(false).toEqual('Should have thrown.');
+            } catch(error) {
+                expect(error.message).toMatchSnapshot();
+            }
+        });
+        test('throws on string.', () => {
+            try{
+                assertIsNumber('string', numberName, context);
+                expect(false).toEqual('Should have thrown.');
+            } catch(error) {
+                expect(error.message).toMatchSnapshot();
+            }
+        });
+    });
+
+    describe('assertIsSupported() behaves as expected', () => {
+        const optionName = 'nuberName';
+        const context = 'test';
+        test('returns normal on option.', () => {
+            assertIsSupported('option', optionName, context);
+        });
+        test('throws on null.', () => {
+            try{
+                assertIsSupported(null, optionName, context);
+                expect(false).toEqual('Should have thrown.');
+            } catch(error) {
+                expect(error.message).toMatchSnapshot();
+            }
+        });
+        test('throws on undefined.', () => {
+            try{
+                assertIsSupported(undefined, optionName, context);
+                expect(false).toEqual('Should have thrown.');
+            } catch(error) {
+                expect(error.message).toMatchSnapshot();
+            }
+        });
+    });
+    describe('assertIsValid() behaves as expected', () => {
+        const config = 'config';
+        const description = 'because something happened.';
+        test('returns normal on true.', () => {
+            assertIsValid(true, config, description);
+        });
+        test('throws on false.', () => {
+            try{
+                assertIsValid(false, config, description);
+                expect(false).toEqual('Should have thrown.');
+            } catch(error) {
+                expect(error.message).toMatchSnapshot();
+            }
+        });
     });
 });
