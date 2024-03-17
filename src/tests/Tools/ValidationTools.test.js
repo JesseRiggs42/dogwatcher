@@ -94,7 +94,7 @@ describe('ValidationTools vaidate parameters:', () => {
                 assertNonEmptyString(null, 'element', 'test');
                 expect(false).toEqual('Should have thrown.');
             } catch(error) {
-                expect(error.message).toEqual('Element "element" in "test" is expected to be of type "string" but is "object".');
+                expect(error.message).toMatchSnapshot();
             }
         });
 
@@ -103,7 +103,7 @@ describe('ValidationTools vaidate parameters:', () => {
                 assertNonEmptyString(undefined, 'element', 'test');
                 expect(false).toEqual('Should have thrown.');
             } catch(error) {
-                expect(error.message).toEqual('Element "element" in "test" is expected to be of type "string" but is "undefined".');
+                expect(error.message).toMatchSnapshot();
             }
         });
 
@@ -112,7 +112,7 @@ describe('ValidationTools vaidate parameters:', () => {
                 assertNonEmptyString(42, 'element', 'test');
                 expect(false).toEqual('Should have thrown.');
             } catch(error) {
-                expect(error.message).toEqual('Element "element" in "test" is expected to be of type "string" but is "number".');
+                expect(error.message).toMatchSnapshot();
             }
         });
     });

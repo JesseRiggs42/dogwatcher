@@ -10,7 +10,7 @@ function assertIsBoolean(boolean, elementName, context) {
 }
 
 function assertNonEmptyString(string, elementName, context) {
-    assert(typeof(string) === 'string', `Element "${elementName}" in "${context}" is expected to be of type "string" but is "${typeof(string)}".`);
+    assertIsString(string, elementName, context);
     assert(string !== '', `Element "${elementName}" cannot be empty.`);
 }
 

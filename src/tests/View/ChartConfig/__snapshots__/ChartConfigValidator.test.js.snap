@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validate() throws on empty type 1`] = `"Could not validate \\"ChartConfig\\": Element \\"type\\" in \\"ChartConfigBase.validate()\\" is expected to be non-null"`;

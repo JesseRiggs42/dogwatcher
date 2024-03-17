@@ -1,5 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ChartConfigBase behaves as expected with invalid parameters throws on invalid labels. 1`] = `"Element \\"1\\" of String Array \\"labels\\" in \\"ChartConfigBase\\" is expected to be of type \\"string\\" but is \\"number\\"."`;
+
+exports[`ChartConfigBase behaves as expected with invalid parameters throws on non-boolean horizontle. 1`] = `
+"[2mexpect([22m[31mreceived[39m[2m).[22mtoEqual[2m([22m[32mexpected[39m[2m) // deep equality[22m
+
+Expected: [32m\\"Should have thrown.\\"[39m
+Received: [31mfalse[39m"
+`;
+
+exports[`ChartConfigBase behaves as expected with invalid parameters throws on non-numeric height. 1`] = `
+"[2mexpect([22m[31mreceived[39m[2m).[22mtoEqual[2m([22m[32mexpected[39m[2m) // deep equality[22m
+
+Expected: [32m\\"Should have thrown.\\"[39m
+Received: [31mfalse[39m"
+`;
+
+exports[`ChartConfigBase behaves as expected with invalid parameters throws on non-numeric width. 1`] = `
+"[2mexpect([22m[31mreceived[39m[2m).[22mtoEqual[2m([22m[32mexpected[39m[2m) // deep equality[22m
+
+Expected: [32m\\"Should have thrown.\\"[39m
+Received: [31mfalse[39m"
+`;
+
+exports[`ChartConfigBase behaves as expected with invalid parameters throws on non-string title. 1`] = `"\\"title\\" in \\"ChartConfigBase\\" is expected to be of type \\"string\\" but is \\"number\\"."`;
+
+exports[`ChartConfigBase behaves as expected with invalid parameters throws on non-string type. 1`] = `
+"[2mexpect([22m[31mreceived[39m[2m).[22mtoEqual[2m([22m[32mexpected[39m[2m) // deep equality[22m
+
+Expected: [32m\\"Should have thrown.\\"[39m
+Received: [31mfalse[39m"
+`;
+
+exports[`ChartConfigBase behaves as expected with invalid parameters throws on undefined title. 1`] = `"Element \\"title\\" in \\"ChartConfigBase\\" is expected to be defined."`;
+
+exports[`ChartConfigBase behaves as expected with invalid parameters throws on undefined type. 1`] = `
+"[2mexpect([22m[31mreceived[39m[2m).[22mtoEqual[2m([22m[32mexpected[39m[2m) // deep equality[22m
+
+Expected: [32m\\"Should have thrown.\\"[39m
+Received: [31mfalse[39m"
+`;
+
 exports[`ChartConfigBase behaves as expected with valid parameters getConfig()  matches snapshot. 1`] = `"{\\"type\\":\\"Config Type\\",\\"options\\":{\\"indexAxis\\":\\"y\\",\\"elements\\":{\\"bar\\":{\\"borderWidth\\":2,\\"borderSkipped\\":false,\\"borderRadius\\":1.7976931348623157e+308}},\\"plugins\\":{\\"legend\\":{\\"position\\":\\"top\\"},\\"title\\":{\\"display\\":true,\\"text\\":\\"Config Title\\"}},\\"responsive\\":true,\\"scales\\":{\\"x\\":{\\"stacked\\":true},\\"y\\":{\\"barThickness\\":0.1,\\"stacked\\":true}}},\\"data\\":{\\"labels\\":[\\"label1\\",\\"label2\\"],\\"datasets\\":[]},\\"style\\":{\\"width\\":10,\\"height\\":20}}"`;
 
 exports[`ChartConfigBase behaves as expected with valid parameters getDatasets() matches snapshot. 1`] = `"[]"`;

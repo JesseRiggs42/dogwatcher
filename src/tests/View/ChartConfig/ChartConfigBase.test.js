@@ -1,5 +1,5 @@
 import ChartConfigBase from "../../../view/Charts/ChartConfigBase";
-import { validate } from '../../../tools/ChartConfigValidator';
+import Validator from '../../../tools/ChartConfigValidator';
 
 describe('ChartConfigBase behaves as expected', () => {
     describe('with valid parameters', () => {
@@ -54,7 +54,7 @@ describe('ChartConfigBase behaves as expected', () => {
             expect(JSON.stringify(chartConfigBase.isResponsive())).toMatchSnapshot();
         });
         test('validate() returns normally.', () => {
-            validate(chartConfigBase.getConfig());
+            Validator.validate(chartConfigBase.getConfig());
         });
         test('getConfig()  matches snapshot.', () => {
             expect(JSON.stringify(chartConfigBase.getConfig())).toMatchSnapshot();

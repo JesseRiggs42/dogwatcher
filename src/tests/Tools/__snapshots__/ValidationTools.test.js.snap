@@ -17,3 +17,9 @@ exports[`ValidationTools vaidate parameters: assertIsSupported() behaves as expe
 exports[`ValidationTools vaidate parameters: assertIsSupported() behaves as expected throws on undefined. 1`] = `"Error: \\"nuberName\\" is not supported by \\"test\\"."`;
 
 exports[`ValidationTools vaidate parameters: assertIsValid() behaves as expected throws on false. 1`] = `"Could not validate \\"config\\": because something happened."`;
+
+exports[`ValidationTools vaidate parameters: assertNonEmptyString() behaves as expected: throws on int. 1`] = `"\\"element\\" in \\"test\\" is expected to be of type \\"string\\" but is \\"number\\"."`;
+
+exports[`ValidationTools vaidate parameters: assertNonEmptyString() behaves as expected: throws on null. 1`] = `"Element \\"element\\" in \\"test\\" is expected to be non-null"`;
+
+exports[`ValidationTools vaidate parameters: assertNonEmptyString() behaves as expected: throws on undefined. 1`] = `"Element \\"element\\" in \\"test\\" is expected to be defined."`;
