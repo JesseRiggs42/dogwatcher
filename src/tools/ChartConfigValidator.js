@@ -74,7 +74,7 @@ const Validator = {
     },
 
     validateData(data) {
-        try{
+        try {
             assertIsDefinedNotNull(data[LABELS], LABELS, CONTEXT);
             assertIsDefinedNotNull(data[DATASETS], DATASETS, CONTEXT);
         
@@ -90,7 +90,7 @@ const Validator = {
                     default:
                         assertIsSupported(false, configKey, CONTEXT);
                 }
-            });    
+            });
         }
         catch(error) {
             assertIsValid(false, 'Data', error.message);
@@ -99,6 +99,8 @@ const Validator = {
 
     validateDatasets(datasets) {
         datasets.forEach(set => {
+            assertIsDefinedNotNull(set[DATA], DATA, DATASETS);
+            assertIsDefinedNotNull(set[LABEL], LABEL, DATASETS);
             Object.keys(set).forEach(optionKey => {
                 const optionValue = set[optionKey];
                 switch(optionKey) {
@@ -130,7 +132,8 @@ const Validator = {
                     case POINTRADIUS:
                         assertIsNumber(optionValue, optionKey, DATASETS);
                         break;
-                    default: 
+                    default:
+                        assertIsSupported(false, optionKey, DATASETS);
                 }
             });
         });
@@ -140,7 +143,7 @@ const Validator = {
         try{
             assertIsDefinedNotNull(options, OPTIONS, 'validateOptions()');
             const { indexAxis, elements, plugins, responsive, scales } = options;
-        
+
             if(indexAxis) {
                 switch(indexAxis) {
                     case ORI_HORIZONTLE:
@@ -167,7 +170,7 @@ const Validator = {
                 Validator.validateScales(scales);
             }    
         } catch(error) {
-            assertIsValid(false, 'Options', error.message);
+            assertIsValid(false, OPTIONS, error.message);
         }
     },
 
@@ -251,22 +254,19 @@ const Validator = {
         Object.keys(plugin).forEach(option => {
             const optionValue = plugin[option];
             switch(option) {
+                case DISPLAY:
+                    assertIsBoolean(optionValue, option, pluginKey);
+                    break;
                 case POSITION:
                     switch(optionValue) {
-                        case POSITION_TOP:
-                            break;
                         case POSITION_BOTTOM:
-                            break;
                         case POSITION_LEFT:
-                            break;
                         case POSITION_RIGHT:
-                            break;
+                        case POSITION_TOP:
+                                break;
                         default:
                             assertIsSupported(false, optionValue, option);
                     }
-                    break;
-                case DISPLAY:
-                    assertIsBoolean(optionValue, option, pluginKey);
                     break;
                 case TEXT:
                     assertIsString(optionValue, option, pluginKey);
@@ -284,14 +284,14 @@ const Validator = {
                 switch(config) {
                     case HEIGHT:
                     case WIDTH:
-                        assertIsNumber(configValue);
+                        assertIsNumber(configValue, config, STYLE);
                         break;
                     default:
                         assertIsSupported(false, config, STYLE);
                 }
             });    
         } catch(error) {
-            assertIsValid(false, 'Style', error.message);
+            assertIsValid(false, STYLE, error.message);
         }
     }
 }

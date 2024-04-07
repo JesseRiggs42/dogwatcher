@@ -7,6 +7,7 @@ const BORDERRADIUS = 'borderRadius';
 const BORDERSKIPPED = 'borderSkipped';
 const BORDERWIDTH = 'borderWidth';
 const CHART_CONFIG_VALIDATE = 'ChartConfigBase.validate()';
+const CHART_CONFIG_VALIDATE_OPTIONS = 'validateOptions()';
 const CONTEXT = 'Config.validateData()';
 const DATA = 'data';
 const DATASETS = 'datasets';
@@ -55,6 +56,7 @@ export {
     BORDERSKIPPED,
     BORDERWIDTH,
     CHART_CONFIG_VALIDATE,
+    CHART_CONFIG_VALIDATE_OPTIONS,
     CONTEXT,
     DATA,
     DATASETS,

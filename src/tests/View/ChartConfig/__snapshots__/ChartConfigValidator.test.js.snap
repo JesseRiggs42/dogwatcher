@@ -1,3 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validate() throws on empty type 1`] = `"Could not validate \\"ChartConfig\\": Element \\"type\\" in \\"ChartConfigBase.validate()\\" is expected to be non-null"`;
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validate() throws new error on data error 1`] = `"Could not validate \\"ChartConfig\\": data error"`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validate() throws new error on options error 1`] = `"Could not validate \\"ChartConfig\\": options error"`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validate() throws new error on style error 1`] = `"Could not validate \\"ChartConfig\\": style error"`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validate() throws on empty type 1`] = `"Could not validate \\"ChartConfig\\": Element \\"type\\" cannot be empty."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validate() throws on null type 1`] = `"Could not validate \\"ChartConfig\\": Element \\"type\\" in \\"ChartConfigBase.validate()\\" is expected to be non-null"`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateData() throws on invalid labels 1`] = `"Could not validate \\"Data\\": Element \\"2\\" of String Array \\"labels\\" in \\"Config.validateData()\\" is expected to be of type \\"string\\" but is \\"number\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateData() throws on null dataSets 1`] = `"Could not validate \\"Data\\": Element \\"datasets\\" in \\"Config.validateData()\\" is expected to be non-null"`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateData() throws on null labels 1`] = `"Could not validate \\"Data\\": Element \\"labels\\" in \\"Config.validateData()\\" is expected to be non-null"`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateDatasets() throws on invalid booleans 1`] = `"Element \\"drawActiveElementsOnTop\\" in \\"datasets\\" is expected to be of type \\"boolean\\" but is \\"string\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateDatasets() throws on invalid data 1`] = `"Element of numeric array \\"data\\" in \\"datasets\\" must be a number."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateDatasets() throws on invalid numbers 1`] = `"\\"barThickness\\" is expected to be a number in \\"datasets\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateDatasets() throws on invalid option 1`] = `"Error: \\"InvalidOption\\" is not supported by \\"datasets\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateDatasets() throws on invalid string arrays 1`] = `"Element \\"1\\" of String Array \\"backgroundColor\\" in \\"datasets\\" is expected to be of type \\"string\\" but is \\"number\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateDatasets() throws on invalid strings 1`] = `"\\"label\\" in \\"datasets\\" is expected to be of type \\"string\\" but is \\"object\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateDatasets() throws on null data 1`] = `"Element \\"data\\" in \\"datasets\\" is expected to be non-null"`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateDatasets() throws on null label 1`] = `"Element \\"label\\" in \\"datasets\\" is expected to be non-null"`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateElement() throws on invalid number 1`] = `"\\"borderWidth\\" is expected to be a number in \\"bar\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateElement() throws on invalid number 2`] = `"Element \\"borderSkipped\\" in \\"bar\\" is expected to be of type \\"boolean\\" but is \\"string\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateElement() throws on invalid option 1`] = `"Error: \\"invalidOption\\" is not supported by \\"bar\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateElements() throws on invalid element 1`] = `"Error: \\"invalidElement\\" is not supported by \\"elements\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateOptions() throws on invalid indexAxis 1`] = `"Could not validate \\"options\\": Error: \\"InvalidIndexAxis\\" is not supported by \\"indexAxis\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateOptions() throws on null options 1`] = `"Could not validate \\"options\\": Element \\"options\\" in \\"validateOptions()\\" is expected to be non-null"`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validatePlugin() throws on invalid display 1`] = `"Element \\"display\\" in \\"plugins\\" is expected to be of type \\"boolean\\" but is \\"string\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validatePlugin() throws on invalid option 1`] = `"Error: \\"invalidOption\\" is not supported by \\"plugins\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validatePlugin() throws on invalid position 1`] = `"Error: \\"invalidOption\\" is not supported by \\"position\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validatePlugin() throws on invalid text 1`] = `"\\"text\\" in \\"plugins\\" is expected to be of type \\"string\\" but is \\"number\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validatePlugins() throws on invalid plugin 1`] = `"Error: \\"invalidPlugin\\" is not supported by \\"plugins\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateScale() throws on invalid barthickness 1`] = `"\\"barThickness\\" is expected to be a number in \\"scales\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateScale() throws on invalid scale 1`] = `"Error: \\"invalidScale\\" is not supported by \\"scales\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateScale() throws on invalid stacked 1`] = `"Element \\"stacked\\" in \\"scales\\" is expected to be of type \\"boolean\\" but is \\"string\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateScales() throws on invalid option 1`] = `"Error: \\"z\\" is not supported by \\"scales\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateStyle() throws on invalid height 1`] = `"Could not validate \\"style\\": \\"height\\" is expected to be a number in \\"style\\"."`;
+
+exports[`ChartConfigValidator behaves as expected. handles invalid inputs and errors for: validateStyle() throws on invalid option 1`] = `"Could not validate \\"style\\": Error: \\"invalidOption\\" is not supported by \\"style\\"."`;
